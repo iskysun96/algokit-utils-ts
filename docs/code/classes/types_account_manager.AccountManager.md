@@ -76,7 +76,7 @@ const accountManager = new AccountManager(clientManager)
 
 #### Defined in
 
-[src/types/account-manager.ts:63](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L63)
+[src/types/account-manager.ts:71](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L71)
 
 ## Properties
 
@@ -90,7 +90,7 @@ const accountManager = new AccountManager(clientManager)
 
 #### Defined in
 
-[src/types/account-manager.ts:52](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L52)
+[src/types/account-manager.ts:60](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L60)
 
 ___
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-[src/types/account-manager.ts:50](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L50)
+[src/types/account-manager.ts:58](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L58)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[src/types/account-manager.ts:53](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L53)
+[src/types/account-manager.ts:61](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L61)
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[src/types/account-manager.ts:51](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L51)
+[src/types/account-manager.ts:59](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L59)
 
 ## Accessors
 
@@ -136,7 +136,7 @@ KMD account manager that allows you to easily get and create accounts using KMD.
 
 #### Defined in
 
-[src/types/account-manager.ts:77](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L77)
+[src/types/account-manager.ts:85](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L85)
 
 ## Methods
 
@@ -156,7 +156,7 @@ KMD account manager that allows you to easily get and create accounts using KMD.
 
 #### Defined in
 
-[src/types/account-manager.ts:68](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L68)
+[src/types/account-manager.ts:76](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L76)
 
 ___
 
@@ -178,7 +178,7 @@ ___
 
 #### Defined in
 
-[src/types/account-manager.ts:594](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L594)
+[src/types/account-manager.ts:604](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L604)
 
 ___
 
@@ -195,7 +195,7 @@ Transactions will be sent in batches of 16 as transaction groups.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `account` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to opt-in |
-| `assetIds` | (`number` \| `bigint`)[] | The list of asset IDs to opt-in to |
+| `assetIds` | `bigint`[] | The list of asset IDs to opt-in to |
 | `options?` | `Omit`\<[`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams), ``"sender"``\> & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md) | Any parameters to control the transaction or execution of the transaction |
 
 #### Returns
@@ -215,7 +215,7 @@ algorand.account.assetBulkOptIn("ACCOUNTADDRESS", [12345, 67890], { maxFee: (100
 
 #### Defined in
 
-[src/types/account-manager.ts:471](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L471)
+[src/types/account-manager.ts:479](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L479)
 
 ___
 
@@ -232,8 +232,8 @@ Transactions will be sent in batches of 16 as transaction groups.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `account` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to opt-in |
-| `assetIds` | (`number` \| `bigint`)[] | The list of asset IDs to opt-out of |
-| `options?` | `Omit`\<[`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams), ``"sender"``\> & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md) & \{ `ensureZeroBalance`: `boolean`  } | Any parameters to control the transaction or execution of the transaction |
+| `assetIds` | `bigint`[] | The list of asset IDs to opt-out of |
+| `options?` | `Omit`\<[`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams), ``"sender"``\> & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md) & \{ `ensureZeroBalance?`: `boolean`  } | Any parameters to control the transaction or execution of the transaction |
 
 #### Returns
 
@@ -252,7 +252,7 @@ algorand.account.assetBulkOptOut("ACCOUNTADDRESS", [12345, 67890], { maxFee: (10
 
 #### Defined in
 
-[src/types/account-manager.ts:523](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L523)
+[src/types/account-manager.ts:531](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L531)
 
 ___
 
@@ -282,7 +282,7 @@ const account = await account.dispenserFromEnvironment()
 
 #### Defined in
 
-[src/types/account-manager.ts:430](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L430)
+[src/types/account-manager.ts:438](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L438)
 
 ___
 
@@ -325,7 +325,7 @@ await algorand.account.ensureFunded("ACCOUNTADDRESS", "DISPENSERADDRESS", algoki
 
 #### Defined in
 
-[src/types/account-manager.ts:627](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L627)
+[src/types/account-manager.ts:637](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L637)
 
 ___
 
@@ -374,7 +374,7 @@ await algorand.account.ensureFundedFromEnvironment("ACCOUNTADDRESS", algokit.alg
 
 #### Defined in
 
-[src/types/account-manager.ts:689](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L689)
+[src/types/account-manager.ts:699](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L699)
 
 ___
 
@@ -418,7 +418,7 @@ await algorand.account.ensureFundedUsingDispenserAPI("ACCOUNTADDRESS", algorand.
 
 #### Defined in
 
-[src/types/account-manager.ts:745](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L745)
+[src/types/account-manager.ts:755](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L755)
 
 ___
 
@@ -463,7 +463,7 @@ If not running against LocalNet then it will use proces.env.MY_ACCOUNT_MNEMONIC 
 
 #### Defined in
 
-[src/types/account-manager.ts:323](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L323)
+[src/types/account-manager.ts:331](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L331)
 
 ___
 
@@ -497,7 +497,7 @@ const defaultDispenserAccount = await account.fromKmd('unencrypted-default-walle
 
 #### Defined in
 
-[src/types/account-manager.ts:359](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L359)
+[src/types/account-manager.ts:367](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L367)
 
 ___
 
@@ -529,7 +529,7 @@ const rekeyedAccount = await account.fromMnemonic("mnemonic secret ...", "SENDER
 
 #### Defined in
 
-[src/types/account-manager.ts:275](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L275)
+[src/types/account-manager.ts:283](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L283)
 
 ___
 
@@ -565,13 +565,13 @@ const account = accountManager.getAccount(sender)
 
 #### Defined in
 
-[src/types/account-manager.ts:190](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L190)
+[src/types/account-manager.ts:198](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L198)
 
 ___
 
 ### getAssetInformation
 
-▸ **getAssetInformation**(`sender`, `assetId`): `Promise`\<\{ `assetId`: `bigint` ; `balance`: `bigint` ; `frozen`: `boolean` ; `round`: `bigint`  }\>
+▸ **getAssetInformation**(`sender`, `assetId`): `Promise`\<[`AccountAssetInformation`](../modules/types_account.md#accountassetinformation)\>
 
 Returns the given sender account's asset holding for a given asset.
 
@@ -584,7 +584,7 @@ Returns the given sender account's asset holding for a given asset.
 
 #### Returns
 
-`Promise`\<\{ `assetId`: `bigint` ; `balance`: `bigint` ; `frozen`: `boolean` ; `round`: `bigint`  }\>
+`Promise`\<[`AccountAssetInformation`](../modules/types_account.md#accountassetinformation)\>
 
 The account asset holding information
 
@@ -600,7 +600,7 @@ const accountInfo = await accountManager.getAccountAssetInformation(address, ass
 
 #### Defined in
 
-[src/types/account-manager.ts:249](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L249)
+[src/types/account-manager.ts:257](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L257)
 
 ___
 
@@ -633,7 +633,7 @@ const accountInfo = await accountManager.getInformation(address);
 
 #### Defined in
 
-[src/types/account-manager.ts:209](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L209)
+[src/types/account-manager.ts:217](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L217)
 
 ___
 
@@ -666,7 +666,7 @@ const signer = accountManager.getSigner("SENDERADDRESS")
 
 #### Defined in
 
-[src/types/account-manager.ts:169](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L169)
+[src/types/account-manager.ts:177](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L177)
 
 ___
 
@@ -690,7 +690,7 @@ const account = await account.localNetDispenser()
 
 #### Defined in
 
-[src/types/account-manager.ts:449](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L449)
+[src/types/account-manager.ts:457](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L457)
 
 ___
 
@@ -721,7 +721,7 @@ const account = await account.logicsig(program, [new Uint8Array(3, ...)])
 
 #### Defined in
 
-[src/types/account-manager.ts:397](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L397)
+[src/types/account-manager.ts:405](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L405)
 
 ___
 
@@ -753,7 +753,7 @@ const account = await account.multisig({version: 1, threshold: 1, addrs: ["ADDRE
 
 #### Defined in
 
-[src/types/account-manager.ts:382](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L382)
+[src/types/account-manager.ts:390](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L390)
 
 ___
 
@@ -777,13 +777,13 @@ const account = await account.random()
 
 #### Defined in
 
-[src/types/account-manager.ts:410](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L410)
+[src/types/account-manager.ts:418](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L418)
 
 ___
 
 ### rekeyed
 
-▸ **rekeyed**(`account`, `sender`): [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) & \{ `account`: \{ `addr`: `string` = sender; `signer`: `TransactionSigner` = account.signer }  }
+▸ **rekeyed**(`sender`, `account`): [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) & \{ `account`: \{ `addr`: `string` = sender; `signer`: `TransactionSigner` = account.signer }  }
 
 Tracks and returns an Algorand account that is a rekeyed version of the given account to a new sender.
 
@@ -791,8 +791,8 @@ Tracks and returns an Algorand account that is a rekeyed version of the given ac
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `account` | [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to use as the signer for this new rekeyed account |
 | `sender` | `string` | The sender address to use as the new sender |
+| `account` | [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to use as the signer for this new rekeyed account |
 
 #### Returns
 
@@ -804,12 +804,12 @@ The account
 
 ```typescript
 const account = await account.fromMnemonic("mnemonic secret ...")
-const rekeyedAccount = await account.rekeyed(account, "SENDERADDRESS...")
+const rekeyedAccount = await account.rekeyed("SENDERADDRESS...", account)
 ```
 
 #### Defined in
 
-[src/types/account-manager.ts:292](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L292)
+[src/types/account-manager.ts:300](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L300)
 
 ___
 
@@ -846,7 +846,7 @@ const signer = accountManager.getSigner("{SENDERADDRESS}")
 
 #### Defined in
 
-[src/types/account-manager.ts:97](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L97)
+[src/types/account-manager.ts:105](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L105)
 
 ___
 
@@ -878,7 +878,7 @@ const accountManager = new AccountManager(clientManager)
 
 #### Defined in
 
-[src/types/account-manager.ts:151](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L151)
+[src/types/account-manager.ts:159](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L159)
 
 ___
 
@@ -916,7 +916,7 @@ const accountManager = new AccountManager(clientManager)
 
 #### Defined in
 
-[src/types/account-manager.ts:135](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L135)
+[src/types/account-manager.ts:143](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L143)
 
 ___
 
@@ -945,4 +945,4 @@ retrieval and returns a `TransactionSignerAccount` along with the original accou
 
 #### Defined in
 
-[src/types/account-manager.ts:106](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L106)
+[src/types/account-manager.ts:114](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L114)

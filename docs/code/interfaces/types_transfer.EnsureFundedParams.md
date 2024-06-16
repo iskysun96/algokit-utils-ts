@@ -4,6 +4,8 @@
 
 [types/transfer](../modules/types_transfer.md).EnsureFundedParams
 
+**`Deprecated`**
+
 Parameters for `ensureFunded` call.
 
 ## Hierarchy

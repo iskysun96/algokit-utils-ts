@@ -4,6 +4,8 @@
 
 [types/transfer](../modules/types_transfer.md).AlgoTransferParams
 
+**`Deprecated`**
+
 Parameters for `transferAlgos` call.
 
 ## Hierarchy
