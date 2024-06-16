@@ -31,7 +31,7 @@ Details to resolve an app client by creator address and name.
 
 #### Defined in
 
-[src/types/client-manager.ts:459](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/client-manager.ts#L459)
+[src/types/client-manager.ts:478](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/client-manager.ts#L478)
 
 ___
 
@@ -43,7 +43,7 @@ Details to resolve an app client by app ID.
 
 #### Defined in
 
-[src/types/client-manager.ts:471](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/client-manager.ts#L471)
+[src/types/client-manager.ts:490](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/client-manager.ts#L490)
 
 ___
 
@@ -55,7 +55,7 @@ Details to resolve a typed app creator address and name.
 
 #### Defined in
 
-[src/types/client-manager.ts:466](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/client-manager.ts#L466)
+[src/types/client-manager.ts:485](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/client-manager.ts#L485)
 
 ___
 
@@ -67,4 +67,4 @@ Details to resolve a typed app by app ID.
 
 #### Defined in
 
-[src/types/client-manager.ts:476](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/client-manager.ts#L476)
+[src/types/client-manager.ts:495](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/client-manager.ts#L495)
