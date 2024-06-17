@@ -52,7 +52,7 @@ Parameters to create an `AlgokitComposer`.
 
 #### Defined in
 
-[src/types/composer.ts:339](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L339)
+[src/types/composer.ts:358](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L358)
 
 ___
 
@@ -64,19 +64,23 @@ Parameters to define an application call transaction.
 
 #### Defined in
 
-[src/types/composer.ts:263](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L263)
+[src/types/composer.ts:282](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L282)
 
 ___
 
 ### AssetConfigParams
 
-Ƭ **AssetConfigParams**: [`CommonTransactionParams`](types_composer.md#commontransactionparams) & \{ `assetId`: `bigint` ; `clawback?`: `string` ; `freeze?`: `string` ; `manager?`: `string` ; `reserve?`: `string`  }
+Ƭ **AssetConfigParams**: [`CommonTransactionParams`](types_composer.md#commontransactionparams) & \{ `assetId`: `bigint` ; `clawback?`: `string` ; `freeze?`: `string` ; `manager`: `string` \| `undefined` ; `reserve?`: `string`  }
 
-Parameters to define an asset config transaction.
+Parameters to define an asset reconfiguration transaction.
+
+**Note:** The manager, reserve, freeze, and clawback addresses
+are immutably empty if they are not set. If manager is not set then
+all fields are immutable from that point forward.
 
 #### Defined in
 
-[src/types/composer.ts:180](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L180)
+[src/types/composer.ts:188](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L188)
 
 ___
 
@@ -90,7 +94,7 @@ The account that sends this transaction will automatically be opted in to the as
 
 #### Defined in
 
-[src/types/composer.ts:69](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L69)
+[src/types/composer.ts:72](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L72)
 
 ___
 
@@ -100,9 +104,11 @@ ___
 
 Parameters to define an asset destroy transaction.
 
+Created assets can be destroyed only by the asset manager account. All of the assets must be owned by the creator of the asset before the asset can be deleted.
+
 #### Defined in
 
-[src/types/composer.ts:204](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L204)
+[src/types/composer.ts:215](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L215)
 
 ___
 
@@ -114,7 +120,7 @@ Parameters to define an asset freeze transaction.
 
 #### Defined in
 
-[src/types/composer.ts:194](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L194)
+[src/types/composer.ts:202](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L202)
 
 ___
 
@@ -126,7 +132,7 @@ Parameters to define an asset opt-in transaction.
 
 #### Defined in
 
-[src/types/composer.ts:224](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L224)
+[src/types/composer.ts:243](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L243)
 
 ___
 
@@ -138,7 +144,7 @@ Parameters to define an asset opt-out transaction.
 
 #### Defined in
 
-[src/types/composer.ts:230](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L230)
+[src/types/composer.ts:249](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L249)
 
 ___
 
@@ -150,7 +156,7 @@ Parameters to define an asset transfer transaction.
 
 #### Defined in
 
-[src/types/composer.ts:210](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L210)
+[src/types/composer.ts:221](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L221)
 
 ___
 
@@ -190,7 +196,7 @@ Parameters to define an ABI method application call transaction.
 
 #### Defined in
 
-[src/types/composer.ts:298](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L298)
+[src/types/composer.ts:317](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L317)
 
 ___
 
@@ -202,7 +208,7 @@ Parameters to define an online key registration transaction.
 
 #### Defined in
 
-[src/types/composer.ts:241](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L241)
+[src/types/composer.ts:260](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L260)
 
 ___
 
@@ -226,7 +232,7 @@ Parameters to define a rekey transaction.
 
 #### Defined in
 
-[src/types/composer.ts:57](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L57)
+[src/types/composer.ts:60](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L60)
 
 ## Variables
 

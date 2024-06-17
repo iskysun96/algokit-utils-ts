@@ -2,7 +2,7 @@
 
 `AlgorandClient` is a client class that brokers easy access to Algorand functionality. It's the [default entrypoint](../README.md#usage) into AlgoKit Utils functionality.
 
-The main entrypoint to the bulk of the functionality in AlgoKit Utils is the `AlgorandClient` class, most of the time you can get started by typing `algokit.AlgorandClient.` and choosing one of the static initialisation methods to create an [Algorand client](./capabilities/algorand-client.md), e.g.:
+The main entrypoint to the bulk of the functionality in AlgoKit Utils is the `AlgorandClient` class, most of the time you can get started by typing `algokit.AlgorandClient.` and choosing one of the static initialisation methods to create an [Algorand client](../code/classes/types_algorand_client.AlgorandClient.md), e.g.:
 
 ```typescript
 // Point to the network configured through environment variables or
@@ -36,3 +36,31 @@ const algodClient = algorand.client.algod
 const indexerClient = algorand.client.indexer
 const kmdClient = algorand.client.kmd
 ```
+
+## Accessing manager class instances
+
+The `AlgorandClient` has a number of manager class instances that help you quickly use intellisense to get access to advanced functionality.
+
+- [`AccountManager`](./account.md) via `algorand.account`, there are also some convenience methods that wrap some methods within `AccountManager` that return `AlgorandClient` and thus allow for method chaining:
+  - `algorand.setDefaultSigner(signer)` -
+  - `algorand.setSignerFromAccount(account)` -
+  - `algorand.setSigner(sender, signer)`
+- [`AssetManager`](./asset.md) via `algorand.asset`
+- [`ClientManager`](./client.md) via `algorand.client`
+
+## Creating and issuing transactions
+
+`AlgorandClient` exposes a series of methods that allow you to create, execute, and compose groups of transactions:
+
+### Creating single transactions
+
+### Sending a single transaction
+
+### Composing a group of transactions
+
+### Transaction configuration
+
+- `algorand.setDefaultValidityWindow(validityWindow)` - defaults to 10
+- `algorand.setSuggestedParams(suggestedParams, until?)`
+- `algorand.setSuggestedParamsTimeout(timeout)`
+- `algorand.getSuggestedParams()`
