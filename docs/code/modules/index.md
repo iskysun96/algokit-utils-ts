@@ -2512,7 +2512,7 @@ The transaction object and optionally the confirmation if it was sent to the cha
 
 **`Deprecated`**
 
-Use `algorand.send.rekey()` / `algorand.transaction.rekey()` instead
+Use `algorand.account.rekeyAccount()` instead
 
 Rekey an account to a new address.
 

@@ -162,7 +162,6 @@ Methods for sending a single transaction.
 | `methodCall` | (`params`: [`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams) & `Omit`\<[`AppCallParams`](../modules/types_composer.md#appcallparams), ``"args"``\> & \{ `appId`: `bigint` ; `args?`: (`TransactionWithSigner` \| `Transaction` \| `ABIValue` \| `Promise`\<`Transaction`\> \| [`MethodCallParams`](../modules/types_composer.md#methodcallparams))[] ; `method`: `ABIMethod`  } & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md)) => `Promise`\<[`SendSingleTransactionResult`](../modules/types_algorand_client.md#sendsingletransactionresult)\> | - |
 | `onlineKeyRegistration` | (`params`: [`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams) & \{ `selectionKey`: `Uint8Array` ; `stateProofKey?`: `Uint8Array` ; `voteFirst`: `bigint` ; `voteKey`: `Uint8Array` ; `voteKeyDilution`: `bigint` ; `voteLast`: `bigint`  } & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md)) => `Promise`\<[`SendSingleTransactionResult`](../modules/types_algorand_client.md#sendsingletransactionresult)\> | - |
 | `payment` | (`params`: [`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams) & \{ `amount`: [`AlgoAmount`](types_amount.AlgoAmount.md) ; `closeRemainderTo?`: `string` ; `receiver`: `string`  } & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md)) => `Promise`\<[`SendSingleTransactionResult`](../modules/types_algorand_client.md#sendsingletransactionresult)\> | - |
-| `rekey` | (`params`: [`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams) & \{ `rekeyTo`: `string`  } & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md)) => `Promise`\<[`SendSingleTransactionResult`](../modules/types_algorand_client.md#sendsingletransactionresult)\> | - |
 
 #### Defined in
 
@@ -191,11 +190,10 @@ Methods for building transactions
 | `methodCall` | (`params`: [`MethodCallParams`](../modules/types_composer.md#methodcallparams)) => `Promise`\<`Transaction`[]\> | - |
 | `onlineKeyRegistration` | (`params`: [`OnlineKeyRegistrationParams`](../modules/types_composer.md#onlinekeyregistrationparams)) => `Promise`\<`Transaction`\> | - |
 | `payment` | (`params`: [`PaymentParams`](../modules/types_composer.md#paymentparams)) => `Promise`\<`Transaction`\> | - |
-| `rekey` | (`params`: [`RekeyParams`](../modules/types_composer.md#rekeyparams)) => `Promise`\<`Transaction`\> | - |
 
 #### Defined in
 
-[src/types/algorand-client.ts:633](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L633)
+[src/types/algorand-client.ts:595](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L595)
 
 ## Accessors
 
@@ -322,7 +320,7 @@ ___
 
 #### Defined in
 
-[src/types/algorand-client.ts:622](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L622)
+[src/types/algorand-client.ts:584](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L584)
 
 ___
 
@@ -529,7 +527,7 @@ The `AlgorandClient`
 
 #### Defined in
 
-[src/types/algorand-client.ts:940](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L940)
+[src/types/algorand-client.ts:873](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L873)
 
 ___
 
@@ -553,7 +551,7 @@ The `AlgorandClient`
 
 #### Defined in
 
-[src/types/algorand-client.ts:977](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L977)
+[src/types/algorand-client.ts:910](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L910)
 
 ___
 
@@ -577,7 +575,7 @@ The `AlgorandClient`
 
 #### Defined in
 
-[src/types/algorand-client.ts:1007](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L1007)
+[src/types/algorand-client.ts:940](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L940)
 
 ___
 
@@ -608,7 +606,7 @@ The `AlgorandClient`
 
 #### Defined in
 
-[src/types/algorand-client.ts:998](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L998)
+[src/types/algorand-client.ts:931](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L931)
 
 ___
 
@@ -626,7 +624,7 @@ The `AlgorandClient`
 
 #### Defined in
 
-[src/types/algorand-client.ts:964](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L964)
+[src/types/algorand-client.ts:897](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L897)
 
 ___
 
@@ -644,4 +642,4 @@ The `AlgorandClient`
 
 #### Defined in
 
-[src/types/algorand-client.ts:952](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L952)
+[src/types/algorand-client.ts:885](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/algorand-client.ts#L885)

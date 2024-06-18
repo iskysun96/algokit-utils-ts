@@ -23,7 +23,7 @@ The number of rounds to wait for confirmation. By default until the latest lastV
 
 #### Defined in
 
-[src/types/composer.ts:352](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L352)
+[src/types/composer.ts:342](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L342)
 
 ___
 
@@ -35,4 +35,4 @@ Whether to suppress log messages from transaction send, default: do not suppress
 
 #### Defined in
 
-[src/types/composer.ts:354](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L354)
+[src/types/composer.ts:344](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L344)

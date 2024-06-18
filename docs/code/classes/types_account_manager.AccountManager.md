@@ -44,6 +44,7 @@ Creates and keeps track of signing accounts that can sign transactions for a sen
 - [logicsig](types_account_manager.AccountManager.md#logicsig)
 - [multisig](types_account_manager.AccountManager.md#multisig)
 - [random](types_account_manager.AccountManager.md#random)
+- [rekeyAccount](types_account_manager.AccountManager.md#rekeyaccount)
 - [rekeyed](types_account_manager.AccountManager.md#rekeyed)
 - [setDefaultSigner](types_account_manager.AccountManager.md#setdefaultsigner)
 - [setSigner](types_account_manager.AccountManager.md#setsigner)
@@ -178,7 +179,7 @@ ___
 
 #### Defined in
 
-[src/types/account-manager.ts:604](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L604)
+[src/types/account-manager.ts:667](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L667)
 
 ___
 
@@ -325,7 +326,7 @@ await algorand.account.ensureFunded("ACCOUNTADDRESS", "DISPENSERADDRESS", algoki
 
 #### Defined in
 
-[src/types/account-manager.ts:637](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L637)
+[src/types/account-manager.ts:700](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L700)
 
 ___
 
@@ -374,7 +375,7 @@ await algorand.account.ensureFundedFromEnvironment("ACCOUNTADDRESS", algokit.alg
 
 #### Defined in
 
-[src/types/account-manager.ts:699](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L699)
+[src/types/account-manager.ts:762](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L762)
 
 ___
 
@@ -418,7 +419,7 @@ await algorand.account.ensureFundedUsingDispenserAPI("ACCOUNTADDRESS", algorand.
 
 #### Defined in
 
-[src/types/account-manager.ts:755](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L755)
+[src/types/account-manager.ts:818](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L818)
 
 ___
 
@@ -778,6 +779,66 @@ const account = await account.random()
 #### Defined in
 
 [src/types/account-manager.ts:418](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L418)
+
+___
+
+### rekeyAccount
+
+▸ **rekeyAccount**(`account`, `rekeyTo`, `options?`): `Promise`\<[`SendSingleTransactionResult`](../modules/types_algorand_client.md#sendsingletransactionresult)\>
+
+Rekey an account to a new address.
+
+**Note:** Please be careful with this function and be sure to read the [official rekey guidance](https://developer.algorand.org/docs/get-details/accounts/rekey/).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `account` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to rekey |
+| `rekeyTo` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The new address to rekey the account to, or a signing account that should now be tracked as the signer for `account` in this `AccountManager` |
+| `options?` | `Omit`\<[`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams), ``"sender"``\> & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md) | Any parameters to control the transaction or execution of the transaction |
+
+#### Returns
+
+`Promise`\<[`SendSingleTransactionResult`](../modules/types_algorand_client.md#sendsingletransactionresult)\>
+
+The result of the transaction and the transaction that was sent
+
+**`Example`**
+
+```typescript
+await algorand.account.rekeyAccount({account: "ACCOUNTADDRESS", rekeyTo: "NEWADDRESS"})
+```
+
+**`Example`**
+
+```typescript
+await algorand.account.rekeyAccount({account: account1, rekeyTo: newSignerAccount})
+```
+
+**`Example`**
+
+```typescript
+await algorand.account.rekeyAccount({
+  account: "ACCOUNTADDRESS",
+  rekeyTo: "NEWADDRESS",
+  lease: 'lease',
+  note: 'note',
+  firstValidRound: 1000n,
+  validityWindow: 10,
+  extraFee: (1000).microAlgos(),
+  staticFee: (1000).microAlgos(),
+  // Max fee doesn't make sense with extraFee AND staticFee
+  //  already specified, but here for completeness
+  maxFee: (3000).microAlgos(),
+  maxRoundsToWaitForConfirmation: 5,
+  suppressLog: true,
+})
+```
+
+#### Defined in
+
+[src/types/account-manager.ts:642](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/account-manager.ts#L642)
 
 ___
 
