@@ -51,7 +51,7 @@ Parameters to create an `AlgokitComposer`.
 
 #### Defined in
 
-[src/types/composer.ts:348](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L348)
+[src/types/composer.ts:387](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L387)
 
 ___
 
@@ -63,7 +63,7 @@ Parameters to define an application call transaction.
 
 #### Defined in
 
-[src/types/composer.ts:273](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L273)
+[src/types/composer.ts:312](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L312)
 
 ___
 
@@ -79,7 +79,7 @@ all fields are immutable from that point forward.
 
 #### Defined in
 
-[src/types/composer.ts:179](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L179)
+[src/types/composer.ts:187](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L187)
 
 ___
 
@@ -93,7 +93,7 @@ The account that sends this transaction will automatically be opted in to the as
 
 #### Defined in
 
-[src/types/composer.ts:63](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L63)
+[src/types/composer.ts:71](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L71)
 
 ___
 
@@ -107,7 +107,7 @@ Created assets can be destroyed only by the asset manager account. All of the as
 
 #### Defined in
 
-[src/types/composer.ts:206](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L206)
+[src/types/composer.ts:245](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L245)
 
 ___
 
@@ -119,7 +119,7 @@ Parameters to define an asset freeze transaction.
 
 #### Defined in
 
-[src/types/composer.ts:193](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L193)
+[src/types/composer.ts:232](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L232)
 
 ___
 
@@ -131,7 +131,7 @@ Parameters to define an asset opt-in transaction.
 
 #### Defined in
 
-[src/types/composer.ts:234](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L234)
+[src/types/composer.ts:273](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L273)
 
 ___
 
@@ -143,7 +143,7 @@ Parameters to define an asset opt-out transaction.
 
 #### Defined in
 
-[src/types/composer.ts:240](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L240)
+[src/types/composer.ts:279](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L279)
 
 ___
 
@@ -155,7 +155,7 @@ Parameters to define an asset transfer transaction.
 
 #### Defined in
 
-[src/types/composer.ts:212](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L212)
+[src/types/composer.ts:251](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L251)
 
 ___
 
@@ -169,17 +169,17 @@ Common parameters for defining a transaction.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `extraFee?` | [`AlgoAmount`](../classes/types_amount.AlgoAmount.md) | The fee to pay IN ADDITION to the suggested fee. Useful for covering inner transaction fees |
-| `firstValidRound?` | `bigint` | Set the first round this transaction is valid. If left undefined, the value from algod will be used. Only set this when you intentionally want this to be some time in the future |
-| `lastValidRound?` | `bigint` | The last round this transaction is valid. It is recommended to use validityWindow instead |
-| `lease?` | `Uint8Array` \| `string` | Prevent multiple transactions with the same lease being included within the validity window |
-| `maxFee?` | [`AlgoAmount`](../classes/types_amount.AlgoAmount.md) | Throw an error if the fee for the transaction is more than this amount |
-| `note?` | `Uint8Array` \| `string` | Note to attach to the transaction |
+| `extraFee?` | [`AlgoAmount`](../classes/types_amount.AlgoAmount.md) | The fee to pay IN ADDITION to the suggested fee. Useful for covering inner transaction fees. |
+| `firstValidRound?` | `bigint` | Set the first round this transaction is valid. If left undefined, the value from algod will be used. We recommend you only set this when you intentionally want this to be some time in the future. |
+| `lastValidRound?` | `bigint` | The last round this transaction is valid. It is recommended to use `validityWindow` instead. |
+| `lease?` | `Uint8Array` \| `string` | Prevent multiple transactions with the same lease being included within the validity window. A [lease](https://developer.algorand.org/articles/leased-transactions-securing-advanced-smart-contract-design/) enforces a mutually exclusive transaction (useful to prevent double-posting and other scenarios). |
+| `maxFee?` | [`AlgoAmount`](../classes/types_amount.AlgoAmount.md) | Throw an error if the fee for the transaction is more than this amount; prevents overspending on fees during high congestion periods. |
+| `note?` | `Uint8Array` \| `string` | Note to attach to the transaction. Max of 1000 bytes. |
 | `rekeyTo?` | `string` | Change the signing key of the sender to the given address. **Warning:** Please be careful with this parameter and be sure to read the [official rekey guidance](https://developer.algorand.org/docs/get-details/accounts/rekey/). |
-| `sender` | `string` | The address sending the transaction |
-| `signer?` | `algosdk.TransactionSigner` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The function used to sign transactions |
-| `staticFee?` | [`AlgoAmount`](../classes/types_amount.AlgoAmount.md) | The transaction fee. In most cases you want to use `extraFee` unless setting the fee to 0 to be covered by another transaction |
-| `validityWindow?` | `number` | How many rounds the transaction should be valid for |
+| `sender` | `string` | The address of the account sending the transaction. |
+| `signer?` | `algosdk.TransactionSigner` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The function used to sign transaction(s); if not specified then an attempt will be made to find a registered signer for the given `sender` or use a default signer (if configured). |
+| `staticFee?` | [`AlgoAmount`](../classes/types_amount.AlgoAmount.md) | The static transaction fee. In most cases you want to use `extraFee` unless setting the fee to 0 to be covered by another transaction. |
+| `validityWindow?` | `number` | How many rounds the transaction should be valid for, if not specified then the registered default validity window will be used. |
 
 #### Defined in
 
@@ -195,7 +195,7 @@ Parameters to define an ABI method application call transaction.
 
 #### Defined in
 
-[src/types/composer.ts:308](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L308)
+[src/types/composer.ts:347](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L347)
 
 ___
 
@@ -207,7 +207,7 @@ Parameters to define an online key registration transaction.
 
 #### Defined in
 
-[src/types/composer.ts:251](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L251)
+[src/types/composer.ts:290](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L290)
 
 ___
 
@@ -219,7 +219,7 @@ Parameters to define a payment transaction.
 
 #### Defined in
 
-[src/types/composer.ts:47](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L47)
+[src/types/composer.ts:55](https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/composer.ts#L55)
 
 ## Variables
 

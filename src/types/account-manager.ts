@@ -321,7 +321,7 @@ export class AccountManager {
    * const account = await account.fromEnvironment('MY_ACCOUNT', algod)
    * ```
    *
-   * If that code runs against LocalNet then a wallet called `MY_ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) ALGOs from the default LocalNet dispenser.
+   * If that code runs against LocalNet then a wallet called `MY_ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) Algos from the default LocalNet dispenser.
    * If not running against LocalNet then it will use proces.env.MY_ACCOUNT_MNEMONIC as the private key and (if present) process.env.MY_ACCOUNT_SENDER as the sender address.
    *
    * @param name The name identifier of the account
@@ -470,9 +470,9 @@ export class AccountManager {
    * @example Example using AlgorandClient
    * ```typescript
    * // Basic example
-   * algorand.account.assetBulkOptIn("ACCOUNTADDRESS", [12345, 67890])
+   * algorand.account.assetBulkOptIn("ACCOUNTADDRESS", [12345n, 67890n])
    * // With configuration
-   * algorand.account.assetBulkOptIn("ACCOUNTADDRESS", [12345, 67890], { maxFee: (1000).microAlgos(), suppressLog: true })
+   * algorand.account.assetBulkOptIn("ACCOUNTADDRESS", [12345n, 67890n], { maxFee: (1000).microAlgos(), suppressLog: true })
    * ```
    * @returns An array of records matching asset ID to transaction ID of the opt in
    */
@@ -522,9 +522,9 @@ export class AccountManager {
    * @example Example using AlgorandClient
    * ```typescript
    * // Basic example
-   * algorand.account.assetBulkOptOut("ACCOUNTADDRESS", [12345, 67890])
+   * algorand.account.assetBulkOptOut("ACCOUNTADDRESS", [12345n, 67890n])
    * // With configuration
-   * algorand.account.assetBulkOptOut("ACCOUNTADDRESS", [12345, 67890], { maxFee: (1000).microAlgos(), suppressLog: true })
+   * algorand.account.assetBulkOptOut("ACCOUNTADDRESS", [12345n, 67890n], { ensureZeroBalance: true, maxFee: (1000).microAlgos(), suppressLog: true })
    * ```
    * @returns An array of records matching asset ID to transaction ID of the opt in
    */
@@ -607,8 +607,8 @@ export class AccountManager {
    * **Note:** Please be careful with this function and be sure to read the [official rekey guidance](https://developer.algorand.org/docs/get-details/accounts/rekey/).
    *
    * @param account The account to rekey
-   * @param rekeyTo The new address to rekey the account to, or a signing account that should now
-   *  be tracked as the signer for `account` in this `AccountManager`
+   * @param rekeyTo The account address or signing account of the account that will be used to authorise transactions for the rekeyed account going forward.
+   *  If a signing account is provided that will now be tracked as the signer for `account` in this `AccountManager`
    * @param options Any parameters to control the transaction or execution of the transaction
    *
    * @example Basic example (with string addresses)
@@ -675,14 +675,14 @@ export class AccountManager {
 
   /**
    * Funds a given account using a dispenser account as a funding source such that
-   * the given account has a certain amount of algos free to spend (accounting for
-   * ALGOs locked in minimum balance requirement).
+   * the given account has a certain amount of Algos free to spend (accounting for
+   * Algos locked in minimum balance requirement).
    *
    * https://developer.algorand.org/docs/get-details/accounts/#minimum-balance
    *
    * @param accountToFund The account to fund
    * @param dispenserAccount The account to use as a dispenser funding source
-   * @param minSpendingBalance The minimum balance of ALGOs that the account should have available to spend (i.e. on top of minimum balance requirement)
+   * @param minSpendingBalance The minimum balance of Algos that the account should have available to spend (i.e. on top of minimum balance requirement)
    * @param options Optional parameters to control the funding increment, transaction or execution of the transaction
    * @example Example using AlgorandClient
    * ```typescript
@@ -732,8 +732,8 @@ export class AccountManager {
   /**
    * Funds a given account using a dispenser account retrieved from the environment,
    * per the `dispenserFromEnvironment` method, as a funding source such that
-   * the given account has a certain amount of algos free to spend (accounting for
-   * ALGOs locked in minimum balance requirement).
+   * the given account has a certain amount of Algos free to spend (accounting for
+   * Algos locked in minimum balance requirement).
    *
    * **Note:** requires a Node.js environment to execute.
    *
@@ -744,7 +744,7 @@ export class AccountManager {
    * https://developer.algorand.org/docs/get-details/accounts/#minimum-balance
    *
    * @param accountToFund The account to fund
-   * @param minSpendingBalance The minimum balance of ALGOs that the account should have available to spend (i.e. on top of minimum balance requirement)
+   * @param minSpendingBalance The minimum balance of Algos that the account should have available to spend (i.e. on top of minimum balance requirement)
    * @param options Optional parameters to control the funding increment, transaction or execution of the transaction
    * @example Example using AlgorandClient
    * ```typescript
@@ -793,14 +793,14 @@ export class AccountManager {
 
   /**
    * Funds a given account using the TestNet Dispenser API as a funding source such that
-   * the account has a certain amount of algos free to spend (accounting for ALGOs locked
+   * the account has a certain amount of algos free to spend (accounting for Algos locked
    * in minimum balance requirement).
    *
    * https://developer.algorand.org/docs/get-details/accounts/#minimum-balance
    *
    * @param accountToFund The account to fund
    * @param dispenserClient The TestNet dispenser funding client
-   * @param minSpendingBalance The minimum balance of ALGOs that the account should have available to spend (i.e. on top of minimum balance requirement)
+   * @param minSpendingBalance The minimum balance of Algos that the account should have available to spend (i.e. on top of minimum balance requirement)
    * @param options Optional parameters to control the funding increment, transaction or execution of the transaction
    * @example Example using AlgorandClient
    * ```typescript

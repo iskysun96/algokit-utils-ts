@@ -209,9 +209,9 @@ An array of records matching asset ID to transaction ID of the opt in
 
 ```typescript
 // Basic example
-algorand.account.assetBulkOptIn("ACCOUNTADDRESS", [12345, 67890])
+algorand.account.assetBulkOptIn("ACCOUNTADDRESS", [12345n, 67890n])
 // With configuration
-algorand.account.assetBulkOptIn("ACCOUNTADDRESS", [12345, 67890], { maxFee: (1000).microAlgos(), suppressLog: true })
+algorand.account.assetBulkOptIn("ACCOUNTADDRESS", [12345n, 67890n], { maxFee: (1000).microAlgos(), suppressLog: true })
 ```
 
 #### Defined in
@@ -246,9 +246,9 @@ An array of records matching asset ID to transaction ID of the opt in
 
 ```typescript
 // Basic example
-algorand.account.assetBulkOptOut("ACCOUNTADDRESS", [12345, 67890])
+algorand.account.assetBulkOptOut("ACCOUNTADDRESS", [12345n, 67890n])
 // With configuration
-algorand.account.assetBulkOptOut("ACCOUNTADDRESS", [12345, 67890], { maxFee: (1000).microAlgos(), suppressLog: true })
+algorand.account.assetBulkOptOut("ACCOUNTADDRESS", [12345n, 67890n], { ensureZeroBalance: true, maxFee: (1000).microAlgos(), suppressLog: true })
 ```
 
 #### Defined in
@@ -292,8 +292,8 @@ ___
 ▸ **ensureFunded**(`accountToFund`, `dispenserAccount`, `minSpendingBalance`, `options?`): `Promise`\<`undefined` \| [`SendAtomicTransactionComposerResults`](../interfaces/types_transaction.SendAtomicTransactionComposerResults.md) & [`ConfirmedTransactionResult`](../interfaces/types_transaction.ConfirmedTransactionResult.md) & [`EnsureFundedResult`](../interfaces/types_account_manager.EnsureFundedResult.md)\>
 
 Funds a given account using a dispenser account as a funding source such that
-the given account has a certain amount of algos free to spend (accounting for
-ALGOs locked in minimum balance requirement).
+the given account has a certain amount of Algos free to spend (accounting for
+Algos locked in minimum balance requirement).
 
 https://developer.algorand.org/docs/get-details/accounts/#minimum-balance
 
@@ -303,7 +303,7 @@ https://developer.algorand.org/docs/get-details/accounts/#minimum-balance
 | :------ | :------ | :------ |
 | `accountToFund` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to fund |
 | `dispenserAccount` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to use as a dispenser funding source |
-| `minSpendingBalance` | [`AlgoAmount`](types_amount.AlgoAmount.md) | The minimum balance of ALGOs that the account should have available to spend (i.e. on top of minimum balance requirement) |
+| `minSpendingBalance` | [`AlgoAmount`](types_amount.AlgoAmount.md) | The minimum balance of Algos that the account should have available to spend (i.e. on top of minimum balance requirement) |
 | `options?` | \{ `minFundingIncrement?`: [`AlgoAmount`](types_amount.AlgoAmount.md)  } & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md) & `Omit`\<[`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams), ``"sender"``\> | Optional parameters to control the funding increment, transaction or execution of the transaction |
 
 #### Returns
@@ -336,8 +336,8 @@ ___
 
 Funds a given account using a dispenser account retrieved from the environment,
 per the `dispenserFromEnvironment` method, as a funding source such that
-the given account has a certain amount of algos free to spend (accounting for
-ALGOs locked in minimum balance requirement).
+the given account has a certain amount of Algos free to spend (accounting for
+Algos locked in minimum balance requirement).
 
 **Note:** requires a Node.js environment to execute.
 
@@ -352,7 +352,7 @@ https://developer.algorand.org/docs/get-details/accounts/#minimum-balance
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `accountToFund` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to fund |
-| `minSpendingBalance` | [`AlgoAmount`](types_amount.AlgoAmount.md) | The minimum balance of ALGOs that the account should have available to spend (i.e. on top of minimum balance requirement) |
+| `minSpendingBalance` | [`AlgoAmount`](types_amount.AlgoAmount.md) | The minimum balance of Algos that the account should have available to spend (i.e. on top of minimum balance requirement) |
 | `options?` | \{ `minFundingIncrement?`: [`AlgoAmount`](types_amount.AlgoAmount.md)  } & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md) & `Omit`\<[`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams), ``"sender"``\> | Optional parameters to control the funding increment, transaction or execution of the transaction |
 
 #### Returns
@@ -384,7 +384,7 @@ ___
 ▸ **ensureFundedFromTestNetDispenserApi**(`accountToFund`, `dispenserClient`, `minSpendingBalance`, `options`): `Promise`\<`undefined` \| [`EnsureFundedResult`](../interfaces/types_account_manager.EnsureFundedResult.md)\>
 
 Funds a given account using the TestNet Dispenser API as a funding source such that
-the account has a certain amount of algos free to spend (accounting for ALGOs locked
+the account has a certain amount of algos free to spend (accounting for Algos locked
 in minimum balance requirement).
 
 https://developer.algorand.org/docs/get-details/accounts/#minimum-balance
@@ -395,7 +395,7 @@ https://developer.algorand.org/docs/get-details/accounts/#minimum-balance
 | :------ | :------ | :------ |
 | `accountToFund` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to fund |
 | `dispenserClient` | [`TestNetDispenserApiClient`](types_dispenser_client.TestNetDispenserApiClient.md) | The TestNet dispenser funding client |
-| `minSpendingBalance` | [`AlgoAmount`](types_amount.AlgoAmount.md) | The minimum balance of ALGOs that the account should have available to spend (i.e. on top of minimum balance requirement) |
+| `minSpendingBalance` | [`AlgoAmount`](types_amount.AlgoAmount.md) | The minimum balance of Algos that the account should have available to spend (i.e. on top of minimum balance requirement) |
 | `options` | `Object` | Optional parameters to control the funding increment, transaction or execution of the transaction |
 | `options.minFundingIncrement?` | [`AlgoAmount`](types_amount.AlgoAmount.md) | - |
 
@@ -459,7 +459,7 @@ If you have a mnemonic secret loaded into `process.env.MY_ACCOUNT_MNEMONIC` then
 const account = await account.fromEnvironment('MY_ACCOUNT', algod)
 ```
 
-If that code runs against LocalNet then a wallet called `MY_ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) ALGOs from the default LocalNet dispenser.
+If that code runs against LocalNet then a wallet called `MY_ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) Algos from the default LocalNet dispenser.
 If not running against LocalNet then it will use proces.env.MY_ACCOUNT_MNEMONIC as the private key and (if present) process.env.MY_ACCOUNT_SENDER as the sender address.
 
 #### Defined in
@@ -795,7 +795,7 @@ Rekey an account to a new address.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `account` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account to rekey |
-| `rekeyTo` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The new address to rekey the account to, or a signing account that should now be tracked as the signer for `account` in this `AccountManager` |
+| `rekeyTo` | `string` \| [`TransactionSignerAccount`](../interfaces/types_account.TransactionSignerAccount.md) | The account address or signing account of the account that will be used to authorise transactions for the rekeyed account going forward. If a signing account is provided that will now be tracked as the signer for `account` in this `AccountManager` |
 | `options?` | `Omit`\<[`CommonTransactionParams`](../modules/types_composer.md#commontransactionparams), ``"sender"``\> & [`ExecuteParams`](../interfaces/types_composer.ExecuteParams.md) | Any parameters to control the transaction or execution of the transaction |
 
 #### Returns

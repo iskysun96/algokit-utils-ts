@@ -420,7 +420,7 @@ ___
 
 ▸ **capTransactionFee**(`transaction`, `maxAcceptableFee`): `void`
 
-Limit the acceptable fee to a defined amount of µALGOs.
+Limit the acceptable fee to a defined amount of µAlgos.
 This also sets the transaction to be flatFee to ensure the transaction only succeeds at
 the estimated rate.
 
@@ -717,7 +717,7 @@ ___
 Use `algorand.account.ensureFunded()` / `algorand.account.ensureFundedFromEnvironment()`
 / `algorand.account.ensureFundedFromTestNetDispenserApi()` instead
 
-Funds a given account using a funding source such that it has a certain amount of algos free to spend (accounting for ALGOs locked in minimum balance requirement).
+Funds a given account using a funding source such that it has a certain amount of algos free to spend (accounting for Algos locked in minimum balance requirement).
 
 https://developer.algorand.org/docs/get-details/accounts/#minimum-balance
 
@@ -817,7 +817,7 @@ If you have a mnemonic secret loaded into `process.env.ACCOUNT_MNEMONIC` then yo
 const account = await getAccount('ACCOUNT', algod)
 ```
 
-If that code runs against LocalNet then a wallet called `ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) ALGOs from the default LocalNet dispenser.
+If that code runs against LocalNet then a wallet called `ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) Algos from the default LocalNet dispenser.
 
 #### Defined in
 
@@ -855,7 +855,7 @@ If you have a mnemonic secret loaded into `process.env.ACCOUNT_MNEMONIC` then yo
 const account = await getAccount({config: getAccountConfigFromEnvironment('ACCOUNT')}, algod)
 ```
 
-If that code runs against LocalNet then a wallet called `ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) ALGOs from the default LocalNet dispenser.
+If that code runs against LocalNet then a wallet called `ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) Algos from the default LocalNet dispenser.
 
 #### Defined in
 
@@ -2276,7 +2276,7 @@ If you have a mnemonic secret loaded into `process.env.MY_ACCOUNT_MNEMONIC` then
 const account = await mnemonicAccountFromEnvironment('MY_ACCOUNT', algod)
 ```
 
-If that code runs against LocalNet then a wallet called `MY_ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) ALGOs from the default LocalNet dispenser.
+If that code runs against LocalNet then a wallet called `MY_ACCOUNT` will automatically be created with an account that is automatically funded with 1000 (default) Algos from the default LocalNet dispenser.
 If not running against LocalNet then it will use proces.env.MY_ACCOUNT_MNEMONIC as the private key and (if present) process.env.MY_ACCOUNT_SENDER as the sender address.
 
 #### Defined in
@@ -2766,7 +2766,7 @@ Returns an amount of µAlgos to cover standard fees for the given number of tran
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `numberOfTransactions` | `number` | The of standard transaction fees to return the amount of ALGOs |
+| `numberOfTransactions` | `number` | The of standard transaction fees to return the amount of Algos |
 
 #### Returns
 
@@ -2828,7 +2828,7 @@ The transaction object and optionally the confirmation if it was sent to the cha
 
 Use `algorand.send.payment()` / `algorand.transaction.payment()` instead
 
-Transfer ALGOs between two accounts.
+Transfer Algos between two accounts.
 
 **`Example`**
 
