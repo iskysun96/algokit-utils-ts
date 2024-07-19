@@ -2,9 +2,10 @@ import algosdk from 'algosdk'
 import { Config } from '../config'
 import { MultisigAccount, SigningAccount, TransactionSignerAccount } from './account'
 import { AccountManager } from './account-manager'
+import { CompiledTeal } from './app'
 import { AssetManager } from './asset-manager'
 import { AlgoSdkClients, ClientManager } from './client-manager'
-import AlgokitComposer, { AssetCreateParams, AssetOptOutParams, ExecuteParams, MethodCallParams } from './composer'
+import AlgokitComposer, { AppCreateParams, AppMethodCallParams, AssetCreateParams, AssetOptOutParams, ExecuteParams } from './composer'
 import { AlgoConfig } from './network-client'
 import { ConfirmedTransactionResult, SendAtomicTransactionComposerResults } from './transaction'
 import Transaction = algosdk.Transaction
@@ -27,6 +28,8 @@ export class AlgorandClient {
   private _cachedSuggestedParamsTimeout: number = 3_000 // three seconds
 
   private _defaultValidityWindow: number = 10
+
+  private _compilationResults: Record<string, CompiledTeal> = {}
 
   private constructor(config: AlgoConfig | AlgoSdkClients) {
     this._clientManager = new ClientManager(config)
@@ -140,6 +143,16 @@ export class AlgorandClient {
     return this._assetManager
   }
 
+  /**
+   * Returns a previous compilation result.
+   * @param tealCode The TEAL code
+   * @returns The information about the previously compiled file
+   *  or `undefined` if that TEAL code wasn't previously compiled
+   */
+  getCompilationResult(tealCode: string): CompiledTeal | undefined {
+    return this._compilationResults[tealCode]
+  }
+
   /** Start a new `AlgokitComposer` transaction group */
   public newGroup() {
     return new AlgokitComposer({
@@ -147,6 +160,7 @@ export class AlgorandClient {
       getSigner: (addr: string) => this.account.getSigner(addr),
       getSuggestedParams: () => this.getSuggestedParams(),
       defaultValidityWindow: this._defaultValidityWindow,
+      onCompilationResult: (result) => (this._compilationResults[result.teal] = result),
     })
   }
 
@@ -173,7 +187,7 @@ export class AlgorandClient {
         // Last item covers when a group is created by an app call with ABI transaction parameters
         transaction: rawResult.transactions[rawResult.transactions.length - 1],
         confirmation: rawResult.confirmations![rawResult.confirmations!.length - 1],
-        txId: rawResult.txIds[0],
+        txId: rawResult.txIds[rawResult.txIds.length - 1],
         ...rawResult,
       }
 
@@ -572,6 +586,24 @@ export class AlgorandClient {
       })(params as AssetOptOutParams & ExecuteParams)
     },
     /**
+     * Create a smart contract.
+     *
+     * Note: you may prefer to use `algorandClient.client` to get an app client for more advanced functionality.
+     */
+    appCreate: async (params: AppCreateParams & ExecuteParams) => {
+      const result = await this._send((c) => c.addAppCreate, {
+        postLog: (params, result) =>
+          `App created by ${params.sender} with ID ${result.confirmation.applicationIndex} via transaction ${result.txIds.at(-1)}`,
+      })(params)
+      return { ...result, appId: BigInt(result.confirmation.applicationIndex ?? 0) }
+    },
+    /**
+     * Update a smart contract.
+     *
+     * Note: you may prefer to use `algorandClient.client` to get an app client for more advanced functionality.
+     */
+    appUpdate: this._send((c) => c.addAppUpdate),
+    /**
      * Call a smart contract.
      *
      * Note: you may prefer to use `algorandClient.client` to get an app client for more advanced functionality.
@@ -870,10 +902,14 @@ export class AlgorandClient {
      * @returns The asset opt-out transaction
      */
     assetOptOut: this._transaction((c) => c.addAssetOptOut),
+    /** Create an application create transaction. */
+    appCreate: this._transaction((c) => c.addAppCreate),
+    /** Create an application update transaction. */
+    appUpdate: this._transaction((c) => c.addAppUpdate),
     /** Create an application call transaction. */
     appCall: this._transaction((c) => c.addAppCall),
     /** Create an application call with ABI method call transaction. */
-    methodCall: async (params: MethodCallParams) => {
+    methodCall: async (params: AppMethodCallParams) => {
       return (await this.newGroup().addMethodCall(params).build()).transactions.map((ts) => ts.txn)
     },
     /** Create an online key registration transaction. */

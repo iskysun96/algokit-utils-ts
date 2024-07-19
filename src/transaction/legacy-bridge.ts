@@ -12,9 +12,9 @@ export async function legacySendTransactionBridge<T extends CommonTransactionPar
   from: SendTransactionFrom,
   sendParams: SendTransactionParams,
   params: T,
-  txn: (c: AlgorandClient) => (params: T) => Promise<Transaction>,
+  txn: ((c: AlgorandClient) => (params: T) => Promise<Transaction>) | ((c: AlgorandClient) => (params: T) => Promise<Transaction[]>),
   send: (c: AlgorandClient) => (params: T & ExecuteParams) => Promise<SendSingleTransactionResult>,
-): Promise<SendTransactionResult> {
+): Promise<SendTransactionResult & { transactions: Transaction[]; client: AlgorandClient }> {
   const client = AlgorandClient.fromClients({ algod }).setSignerFromAccount(from)
 
   if (sendParams.fee) {
@@ -26,11 +26,12 @@ export async function legacySendTransactionBridge<T extends CommonTransactionPar
 
   if (sendParams.atc || sendParams.skipSending) {
     const transaction = await txn(client)(params)
+    const txns = 'length' in transaction ? transaction : [transaction]
     if (sendParams.atc) {
-      sendParams.atc.addTransaction(await { txn: transaction, signer: getSenderTransactionSigner(from) })
+      txns.map((txn) => ({ txn, signer: getSenderTransactionSigner(from) })).forEach((t) => sendParams.atc!.addTransaction(t))
     }
-    return { transaction }
+    return { transaction: txns.at(-1)!, transactions: txns, client }
   }
 
-  return await send(client)({ ...sendParams, ...params })
+  return { ...(await send(client)({ ...sendParams, ...params })), client }
 }

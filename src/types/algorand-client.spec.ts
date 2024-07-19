@@ -5,7 +5,7 @@ import { algorandFixture } from '../testing'
 import { TransactionSignerAccount } from './account'
 import AlgorandClient from './algorand-client'
 import { AlgoAmount } from './amount'
-import { MethodCallParams } from './composer'
+import { AppMethodCallParams } from './composer'
 
 async function compileProgram(algorand: AlgorandClient, b64Teal: string) {
   const teal = new Uint8Array(Buffer.from(b64Teal, 'base64'))
@@ -122,7 +122,7 @@ describe('AlgorandClient', () => {
       sender: alice.addr,
       appId: appId,
       method: appClient.appClient.getABIMethod('helloWorld')!,
-    } satisfies MethodCallParams
+    } satisfies AppMethodCallParams
 
     const methodArgRes = await algorand
       .newGroup()
@@ -144,7 +144,7 @@ describe('AlgorandClient', () => {
       appId: appId,
       method: appClient.appClient.getABIMethod('txnArg')!,
       args: [algorand.transactions.payment({ sender: alice.addr, receiver: alice.addr, amount: AlgoAmount.MicroAlgos(0) })],
-    } satisfies MethodCallParams
+    } satisfies AppMethodCallParams
 
     const nestedTxnArgRes = await algorand
       .newGroup()
@@ -166,7 +166,7 @@ describe('AlgorandClient', () => {
       appId: appId,
       method: appClient.appClient.getABIMethod('txnArg')!,
       args: [algorand.transactions.payment({ sender: alice.addr, receiver: alice.addr, amount: AlgoAmount.MicroAlgos(0) })],
-    } satisfies MethodCallParams
+    } satisfies AppMethodCallParams
 
     const secondTxnCall = {
       sender: alice.addr,
@@ -174,7 +174,7 @@ describe('AlgorandClient', () => {
       method: appClient.appClient.getABIMethod('txnArg')!,
       args: [algorand.transactions.payment({ sender: alice.addr, receiver: alice.addr, amount: AlgoAmount.MicroAlgos(1) })],
       note: new Uint8Array([1]),
-    } satisfies MethodCallParams
+    } satisfies AppMethodCallParams
 
     const doubleNestedTxnArgRes = await algorand
       .newGroup()

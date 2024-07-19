@@ -1,6 +1,7 @@
 import algosdk from 'algosdk'
 import { Buffer } from 'buffer'
 import { Config } from './config'
+import { legacySendTransactionBridge } from './transaction/legacy-bridge'
 import {
   controlFees,
   encodeLease,
@@ -33,6 +34,7 @@ import {
   RawAppCallArgs,
   UpdateAppParams,
 } from './types/app'
+import AlgokitComposer, { AppCreateParams, AppMethodCall } from './types/composer'
 import { SendTransactionFrom, SendTransactionParams } from './types/transaction'
 import { toNumber } from './util'
 import ABIMethod = algosdk.ABIMethod
@@ -57,6 +59,31 @@ export async function createApp(
   create: CreateAppParams,
   algod: Algodv2,
 ): Promise<Partial<AppCompilationResult> & AppCallTransactionResult & AppReference> {
+  if (create.args && create.args?.method) {
+    const result = await legacySendTransactionBridge(
+      algod,
+      create.from,
+      create,
+      {
+        approvalProgram: create.approvalProgram,
+        clearProgram: create.clearStateProgram,
+        method: create.args.method, // todo: is this right?
+        onComplete: create.onCompleteAction,
+        // todo: others
+      } as AppMethodCall<AppCreateParams>,
+      (c) => c.transactions.methodCall,
+      (c) => c.send.methodCall,
+    )
+    return {
+      ...result,
+      appId: result.confirmation?.applicationIndex ?? 0,
+      appAddress: result.confirmation?.applicationIndex ? algosdk.getApplicationAddress(result.confirmation.applicationIndex) : '',
+      compiledApproval: typeof create.approvalProgram === 'string' ? result.client.getCompilationResult(create.approvalProgram) : undefined,
+      compiledClear:
+        typeof create.clearStateProgram === 'string' ? result.client.getCompilationResult(create.clearStateProgram) : undefined,
+    }
+  }
+
   const {
     from,
     approvalProgram: approval,
@@ -623,6 +650,7 @@ export async function getAppArgsForABICall(args: ABIAppCallArgs, from: SendTrans
 }
 
 /**
+ * @deprecated Use `AlgoKitComposer.getBoxReference()` instead.
  * Returns a `algosdk.BoxReference` given a `BoxIdentifier` or `BoxReference`.
  * @param box The box to return a reference for
  * @returns The box reference ready to pass into a `Transaction`
@@ -662,6 +690,7 @@ export async function getAppById(appId: number | bigint, algod: Algodv2) {
 }
 
 /**
+ * @deprecated Use `algokitComposer.compileTeal` instead.
  * Compiles the given TEAL using algod and returns the result, including source map.
  *
  * @param algod An algod client
@@ -669,14 +698,12 @@ export async function getAppById(appId: number | bigint, algod: Algodv2) {
  * @returns The information about the compiled file
  */
 export async function compileTeal(tealCode: string, algod: Algodv2): Promise<CompiledTeal> {
-  const compiled = await algod.compile(tealCode).sourcemap(true).do()
-  return {
-    teal: tealCode,
-    compiled: compiled.result,
-    compiledHash: compiled.hash,
-    compiledBase64ToBytes: new Uint8Array(Buffer.from(compiled.result, 'base64')),
-    sourceMap: new SourceMap(compiled['sourcemap']),
-  }
+  return new AlgokitComposer({
+    algod,
+    getSigner: () => {
+      throw new Error('Should not happen')
+    },
+  }).compileTeal(tealCode)
 }
 
 /**
